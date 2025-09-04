@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Sparkle Jewelry - Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded mb-4 text-center">
+    <h1 class="display-4">Welcome to Sparkle Jewelry</h1>
+    <p class="lead">Discover our beautiful collection of handcrafted jewelry</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg">Shop All Jewelry</a>
+</div>
+
+<h2 class="mb-4">Featured Products</h2>
+<div class="row">
+    {% for product in featured_products %}
+    <div class="col-md-3 mb-4">
+        <div class="card h-100">
+            <img src="{{ product.image.url }}" class="card-img-top product-image" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text text-primary fw-bold">${{ product.price }}</p>
+                <a href="{% url 'product_detail' product.id %}"> class="btn btn-primary btn-sm">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">No products available yet.</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
