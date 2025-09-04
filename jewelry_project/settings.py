@@ -20,7 +20,11 @@ SECRET_KEY = 'django-insecure-(gx7k@@(we#@@hr9m92^kizq#qk9pul)lt1hi@4#@a84wc4a9d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "jewelry-store-encn.onrender.com",
+]
 
 # Application definition
 INSTALLED_APPS = [
