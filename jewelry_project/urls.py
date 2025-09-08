@@ -1,7 +1,9 @@
-# Add to jewelry_project/urls.py
+from django.contrib import admin
+from django.urls import path, include  # Make sure path is imported!
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
+# Add this function for admin creation
 def create_admin_now(request):
     try:
         # Create or update admin user
@@ -27,8 +29,12 @@ def create_admin_now(request):
     except Exception as e:
         return HttpResponse(f'❌ Error: {e}')
 
-# Add to your urlpatterns:
 urlpatterns = [
-    # ... your existing patterns ...
-    path('create-admin-now/', create_admin_now),
+    path('admin/', admin.site.urls),
+    path('create-admin-now/', create_admin_now),  # Add this line
+    # ... include your other app URLs here ...
+    path('', include('products.urls')),  # Example for other apps
+    path('accounts/', include('accounts.urls')),
+    path('cart/', include('cart.urls')),
+    path('orders/', include('orders.urls')),
 ]
