@@ -1,5 +1,7 @@
 from django.contrib import admin
-from django.urls import path, include  # Make sure path is imported!
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
@@ -31,10 +33,12 @@ def create_admin_now(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create-admin-now/', create_admin_now),  # Add this line
-    # ... include your other app URLs here ...
-    path('', include('products.urls')),  # Example for other apps
+    path('', include('products.urls')),
     path('accounts/', include('accounts.urls')),
     path('cart/', include('cart.urls')),
     path('orders/', include('orders.urls')),
+    path('create-admin-now/', create_admin_now),  # Add this line for admin creation
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
