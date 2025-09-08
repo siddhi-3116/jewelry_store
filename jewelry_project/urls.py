@@ -37,7 +37,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('cart/', include('cart.urls')),
     path('orders/', include('orders.urls')),
-    path('create-admin-now/', create_admin_now),  # Add this line for admin creation
+    path('create-admin-now/', create_admin_now),  # This line must exist
 ]
 
 if settings.DEBUG:
